@@ -37,7 +37,13 @@ namespace AspNetCoreServicesApp.Repositories
         }
         public T GetById(int id)
         {
-            return this.DishDiscoveryContext.Set<T>().Find(id);
+            T entity = this.DishDiscoveryContext.Set<T>().Find(id);
+
+            if (entity == null)
+            {
+                throw new ArgumentException($"Entity with id {id} not found");
+            }
+            return entity;
         }
     }
 }

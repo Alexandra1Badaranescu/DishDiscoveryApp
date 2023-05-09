@@ -2,7 +2,7 @@
 using System.Linq;
 using DishDiscovery.Models;
 using DishDiscovery.Repositories.Interfaces;
-using DishDiscovery.Services.IServices;
+using DishDiscovery.Services.Interfaces;
 
 namespace DishDiscovery.Services
 {
@@ -45,4 +45,4 @@ namespace DishDiscovery.Services
         }
     }
 }
-}
+

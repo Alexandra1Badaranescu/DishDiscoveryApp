@@ -2,45 +2,46 @@
 using System.Linq;
 using DishDiscovery.Models;
 using DishDiscovery.Repositories.Interfaces;
-using DishDiscovery.Services.IServices;
+using DishDiscovery.Services.Interfaces;
 
 namespace DishDiscovery.Services
 {
     public class MenuItemService : IMenuItemService
     {
-        private readonly IMenuItemRepository _menuItemRepository;
+        private IRepositoryWrapper _repositoryWrapper;
 
-        public MenuItemService(IMenuItemRepository menuItemRepository)
+        public MenuItemService(IRepositoryWrapper repositoryWrapper)
         {
-            _menuItemRepository = menuItemRepository;
+            _repositoryWrapper = repositoryWrapper;
         }
 
         public IEnumerable<MenuItem> GetAllMenuItems()
         {
-            return _menuItemRepository.FindAll().ToList();
+            return _repositoryWrapper.MenuItemRepository.FindAll();
         }
 
-        public MenuItem GetMenuItemById(int id)
+        public MenuItem GetMenuItemById(int menuItemId)
         {
-            return _menuItemRepository.GetById(id);
+            return _repositoryWrapper.MenuItemRepository.GetById(menuItemId);
         }
 
         public void CreateMenuItem(MenuItem menuItem)
         {
-            _menuItemRepository.Create(menuItem);
-            _menuItemRepository.Save();
+            _repositoryWrapper.MenuItemRepository.Create(menuItem);
+            _repositoryWrapper.Save();
         }
 
         public void UpdateMenuItem(MenuItem menuItem)
         {
-            _menuItemRepository.Update(menuItem);
-            _menuItemRepository.Save();
+            _repositoryWrapper.MenuItemRepository.Update(menuItem);
+            _repositoryWrapper.Save();
         }
 
         public void DeleteMenuItem(MenuItem menuItem)
         {
-            _menuItemRepository.Delete(menuItem);
-            _menuItemRepository.Save();
+            _repositoryWrapper.MenuItemRepository.Delete(menuItem);
+            _repositoryWrapper.Save();
         }
     }
+
 }
