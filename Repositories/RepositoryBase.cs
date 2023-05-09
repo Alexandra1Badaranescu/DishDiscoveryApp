@@ -15,15 +15,11 @@ namespace AspNetCoreServicesApp.Repositories
             this.DishDiscoveryContext = dishDiscoveryContext;
         }
 
-        //public IQueryable<T> FindAll()
-        //{
-        //    return this.LocationContext.Set<T>().AsNoTracking();
-        //}
+        public IQueryable<T> FindAll()
+        {
+            return this.DishDiscoveryContext.Set<T>().AsNoTracking();
+        }
 
-        //public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
-        //{
-        //    return this.LocationContext.Set<T>().Where(expression).AsNoTracking();
-        //}
 
         public void Create(T entity)
         {
@@ -38,6 +34,10 @@ namespace AspNetCoreServicesApp.Repositories
         public void Delete(T entity)
         {
             this.DishDiscoveryContext.Set<T>().Remove(entity);
+        }
+        public T GetById(int id)
+        {
+            return this.DishDiscoveryContext.Set<T>().Find(id);
         }
     }
 }
