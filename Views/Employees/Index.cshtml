@@ -1,59 +1,61 @@
 ﻿@model IEnumerable<Employee>
-
+<div>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Employees";
 }
+</div>
+<style>
+    body {
+        background-image: url("chefscook-15-1080x675.png");
+        background-size: cover;
+    }
+</style>
 
-<h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkSchedule)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContactDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkSchedule)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div style="margin-top: 50px;">
+    <h1 style="display: inline-block;">Employees</h1>
+    <a asp-action="Create" class="btn btn-purple" style="float: right;">Create Employee</a>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Contact Details</th>
+                        <th>Work Schedule</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var employee in Model)
+                    {
+                        <tr>
+                            <td>@employee.FirstName</td>
+                            <td>@employee.LastName</td>
+                            <td>@employee.Position</td>
+                            <td>@employee.ContactDetails</td>
+                            <td>@employee.WorkSchedule</td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Employee Actions">
+                                    <a asp-action="Details" asp-route-id="@employee.EmployeeId" class="btn btn-primary">Details</a>
+                                    <a asp-action="Edit" asp-route-id="@employee.EmployeeId" class="btn btn-secondary">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@employee.EmployeeId" class="btn btn-danger">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-purple {
+        background-color: purple;
+        color: #fff;
+    }
+</style>
