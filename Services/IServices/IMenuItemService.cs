@@ -5,7 +5,7 @@ namespace DishDiscovery.Services.Interfaces
 {
     public interface IMenuItemService
     {
-        IEnumerable<MenuItem> GetAllMenuItem();
+        IEnumerable<MenuItem> GetAllMenuItems();
         MenuItem GetMenuItemById(int id);
         void CreateMenuItem(MenuItem menuItem);
         void UpdateMenuItem(MenuItem menuItem);

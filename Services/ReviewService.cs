@@ -15,7 +15,7 @@ namespace DishDiscovery.Services
             _repositoryWrapper = repositoryWrapper;
         }
 
-        public IEnumerable<Review> GetAllReview()
+        public IEnumerable<Review> GetAllReviews()
         {
             return _repositoryWrapper.ReviewRepository.FindAll();
         }
